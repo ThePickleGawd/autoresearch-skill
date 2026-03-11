@@ -29,7 +29,10 @@ Add BibTeX entries to `references.bib` (in the paper directory). Aim for 15-30 r
 ### 5. Log findings
 Append to `.autoresearch/log.jsonl` a summary entry with the landscape overview, gap identified, hypothesis, and key baselines.
 
-### 6. User checkpoint
+### 6. Write report
+Write `.autoresearch/reports/YYYY-MM-DD-ground.md` summarizing: search queries used, papers found, gap identified, hypothesis, and key baselines.
+
+### 7. User checkpoint
 Present to the user:
 1. The gap you found
 2. Top 10 papers (title, year, one-line summary)

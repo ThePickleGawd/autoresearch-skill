@@ -30,6 +30,7 @@ Everything lives in `.autoresearch/` in your project:
 │   ├── main.tex       # auto-detected main file
 │   └── references.bib # living bibliography
 ├── refs/              # downloaded arxiv papers (gitignored)
+├── reports/           # timestamped phase reports
 ├── settings.md        # project preferences
 ├── log.jsonl          # all activity
 └── scratch/           # experiment work (gitignored)

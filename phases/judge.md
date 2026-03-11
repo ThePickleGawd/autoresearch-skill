@@ -31,7 +31,10 @@ Log the verdict to `.autoresearch/log.jsonl`:
 {"time":"...","phase":"judge","action":"evaluated","verdict":"REVISE","scores":{"validity":0.8,"fairness":0.5,"alignment":0.9},"issues":["missing FlashAttention-2 baseline"],"next":"add baseline, re-run"}
 ```
 
-### 4. Route
+### 4. Write report
+Write `.autoresearch/reports/YYYY-MM-DD-judge.md` (or `-judge-N` if repeated) summarizing: scores per target, verdict, issues found, and next action.
+
+### 5. Route
 
 - **PASS** → Complete the paper, update `references.bib` (in the paper directory), tell user it's done.
 - **REVISE** → Immediately return to experiment phase. Max 3 judge loops before asking user.

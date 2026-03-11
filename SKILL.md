@@ -25,6 +25,7 @@ All research state lives in `.autoresearch/` in the user's project:
 │   ├── main.tex       # main file (auto-detected)
 │   └── references.bib # living bibliography
 ├── refs/              # downloaded arxiv papers as context (gitignored)
+├── reports/           # timestamped phase reports
 ├── settings.md        # project preferences
 ├── log.jsonl          # all activity across phases and agents
 └── scratch/           # experimental scratch work (gitignored)
@@ -74,6 +75,17 @@ Experiment → judge loops until the judge passes.
 2. Never fabricate — if you can't verify, add `note = {TO VERIFY}`
 3. Cite keys: `{firstauthor}{year}{keyword}` (e.g., `vaswani2017attention`)
 4. When you find a key paper, download its arxiv HTML to `.autoresearch/refs/` for full-text context
+
+## Reports
+
+After completing each phase, write a report to `.autoresearch/reports/YYYY-MM-DD-<phase>.md`. If multiple runs on the same day, append a number: `2026-03-11-experiment-2.md`.
+
+Reports should be concise, human-readable summaries:
+- **What was done** — actions taken, decisions made
+- **Key findings** — results, discoveries, surprises
+- **Next steps** — what the next phase should focus on
+
+These are for the user to review progress without reading `log.jsonl`.
 
 ## Activity Log
 

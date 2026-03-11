@@ -33,7 +33,10 @@ From abstract and contributions, extract testable claims. Log them:
 ### 5. Update references
 Read downloaded papers from `.autoresearch/refs/` for accurate citation details. Add any new citations to `references.bib` (in the paper directory).
 
-### 6. User checkpoint
+### 6. Write report
+Write `.autoresearch/reports/YYYY-MM-DD-specify.md` summarizing: abstract draft, contribution list, validation targets with metrics/thresholds, and open questions.
+
+### 7. User checkpoint
 Present the abstract, introduction, and validation targets.
 Ask: "Does this capture your vision?"
 
