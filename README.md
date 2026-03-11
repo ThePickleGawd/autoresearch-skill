@@ -1,117 +1,60 @@
 # autoresearch
 
-Paper-first autonomous research agent. An [Agent Skill](https://agentskills.io) that works with Claude Code, Codex, Cursor, and any skills-compatible agent.
+Paper-first autonomous research. An [Agent Skill](https://agentskills.io) for Claude Code, Codex, Cursor, and any compatible agent.
 
-## What it does
+Writes the paper first. Experiments validate claims. A judge loop iterates until results pass.
 
-Unlike traditional approaches (run experiments → write paper), autoresearch **writes the paper first**. The abstract and introduction become the specification. Experiments validate claims. A judge loop iterates until results pass.
-
-**Inspired by:** [karpathy/autoresearch](https://github.com/karpathy/autoresearch), [GEA](https://arxiv.org/abs/2602.04837) (interagent communication via shared experience pools), [AI-Scientist-v2](https://github.com/SakanaAI/AI-Scientist-v2), [AgentRxiv](https://agentrxiv.github.io/)
+**Inspired by:** [karpathy/autoresearch](https://github.com/karpathy/autoresearch), [GEA](https://arxiv.org/abs/2602.04837), [AI-Scientist-v2](https://github.com/SakanaAI/AI-Scientist-v2), [AgentRxiv](https://agentrxiv.github.io/)
 
 ## Install
 
 ```bash
-# Claude Code
 npx skills add dylan/autoresearch
-
-# Or symlink for local dev
-ln -s /path/to/autoresearch ~/.claude/skills/autoresearch
-
-# Codex — copy SKILL.md content into AGENTS.md (frontmatter is ignored gracefully)
 ```
 
 ## Usage
 
 ```
-/autoresearch "Can sparse attention match dense attention quality at 1/4 the compute?"
+/autoresearch "Can sparse attention match dense attention at 1/4 the compute?"
+/autoresearch resume
+/autoresearch skip ground
 ```
 
-## Configure per project
+## What it creates
 
-Add an `## Autoresearch` section to your project's CLAUDE.md (or AGENTS.md). Only list what you want to change — everything else uses sensible defaults.
+Everything lives in `.autoresearch/` in your project:
+
+```
+.autoresearch/
+├── paper.tex          # working paper (written first)
+├── references.bib     # living bibliography
+├── refs/              # downloaded arxiv papers (gitignored)
+├── settings.md        # project preferences
+├── log.jsonl          # all activity
+└── scratch/           # experiment work (gitignored)
+```
+
+## Settings
+
+`.autoresearch/settings.md` — three options, all optional:
 
 ```markdown
-## Autoresearch
-- Format: markdown
-- Stack: python, jax
+# Research Settings
+- Format: latex
 - Phases: ground, specify, experiment, judge
-- Budget: 5 min per experiment
-- Judge focus: reproducibility
-- Notes: single GPU, use wandb for logging
+- Notes: python + jax, single GPU, use wandb
 ```
 
-| Setting | Default | What it controls |
-|---------|---------|-----------------|
-| **Format** | `latex` | Output: `latex`, `markdown`, or `notebook` |
-| **Stack** | (inferred) | Language and frameworks for experiments |
-| **Phases** | all 6 | Which phases to run, in order |
-| **Budget** | no limit | Time cap per experiment |
-| **Judge focus** | all equal | Which judge criteria matter most |
-| **Notes** | none | Hardware, conventions, anything else |
+## Four phases
 
-No config file needed. No schema to learn. Natural language works fine.
+| Phase | What | Pauses? |
+|-------|------|---------|
+| **ground** | Search literature, download papers, build references.bib | Yes |
+| **specify** | Co-write abstract + intro as the spec | Yes |
+| **experiment** | Run experiments in scratch/, log results | No |
+| **judge** | Evaluate results, decide pass/revise/pivot | If pivot |
 
-## How it works
-
-### Six phases
-
-| Phase | Name | What happens |
-|-------|------|-------------|
-| 1 | **Ground** | Survey literature, build `references.bib`, identify the gap |
-| 2 | **Specify** | Co-write abstract + intro with user, citing previous works |
-| 3 | **Scaffold** | Set up experiment code, data pipelines, evaluation harness |
-| 4 | **Experiment** | Run validation experiments, log to shared pool |
-| 5 | **Judge** | Evaluate results against paper claims (adversarial) |
-| 6 | **Branch** | Spawn parallel agents for new directions (GEA-style) |
-
-Phases 4→5→6 loop until the judge passes.
-
-### Key ideas
-
-- **Paper as specification** — The `.tex` file defines what must be true. Experiments fill claims.
-- **Shared experience pool** — All agents read/write `shared_pool/`. Innovations propagate across branches ([GEA architecture](https://arxiv.org/abs/2602.04837)).
-- **Judge loop** — No result accepted without adversarial evaluation. 5 criteria scored 0.0-1.0.
-- **Living references** — `references.bib` maintained continuously. Every claim must cite. Never fabricate.
-- **Parallel branching** — When findings suggest new directions, spawn subagents that share the experience pool.
-
-### Project structure (generated)
-
-```
-your-project/
-├── paper/
-│   ├── paper.tex              # The spec — written FIRST
-│   └── references.bib         # Living bibliography
-├── experiments/
-│   ├── baseline/              # Validation experiments
-│   └── branch_NNN/            # Parallel branches
-├── shared_pool/
-│   ├── experience_log.jsonl   # All agent traces (GEA pool)
-│   ├── findings.md            # Consolidated discoveries
-│   └── literature_notes.md    # Paper summaries
-├── judge/
-│   └── evaluations.jsonl      # Verdicts with reasoning
-└── research_state.json        # Phase tracking
-```
-
-## Skill structure
-
-```
-autoresearch/
-├── SKILL.md              # Main entry point
-├── phases/
-│   ├── 01-ground.md      # Literature survey protocol
-│   ├── 02-specify.md     # Abstract + intro writing
-│   ├── 03-scaffold.md    # Experiment setup
-│   ├── 04-experiment.md  # Run & iterate
-│   ├── 05-judge.md       # Adversarial evaluation
-│   └── 06-branch.md      # Parallel exploration (GEA)
-├── templates/
-│   ├── paper.tex         # LaTeX template
-│   ├── experience_entry.json  # Shared pool schema
-│   └── judge_rubric.md   # Scoring guide
-└── scripts/
-    └── init_project.sh   # Project scaffolding
-```
+Experiment → judge loops until pass.
 
 ## License
 

@@ -1,0 +1,40 @@
+# Phase: Specify
+
+## Goal
+Write the abstract and introduction in `.autoresearch/paper.tex`. These are the specification — every claim must be validated by experiments.
+
+## Steps
+
+### 1. Draft abstract (200-300 words)
+1. **Context** — problem domain (1-2 sentences)
+2. **Gap** — what's missing, cite prior work (1-2 sentences)
+3. **Method** — what we propose (2-3 sentences)
+4. **Expected results** — phrased as goals, not claims yet (1-2 sentences)
+5. **Significance** — why it matters (1 sentence)
+
+Mark unvalidated result claims with `% TODO: validate`.
+
+### 2. Write introduction (4-5 paragraphs)
+1. Big picture — why this matters, cite foundational works
+2. What exists — survey approaches, heavy citation from `references.bib`
+3. The gap — what's missing, why it matters
+4. Our approach — key insight, brief methodology
+5. Contributions — bullet list (each becomes a validation target)
+
+### 3. Outline remaining sections
+Add section stubs with `% TODO` comments in `paper.tex`.
+
+### 4. Extract validation targets
+From abstract and contributions, extract testable claims. Log them:
+```json
+{"time":"...","phase":"specify","action":"defined validation targets","targets":[{"claim":"...","metric":"...","threshold":"..."}]}
+```
+
+### 5. Update references
+Read downloaded papers from `.autoresearch/refs/` for accurate citation details. Add any new citations to `references.bib`.
+
+### 6. User checkpoint
+Present the abstract, introduction, and validation targets.
+Ask: "Does this capture your vision?"
+
+**Stop and wait for user confirmation before proceeding to experiment.**
