@@ -39,7 +39,7 @@ For each validation target:
 ### 6. Update paper
 After successful experiments:
 - Fill Experiments section in the paper file with real numbers
-- Replace `% TODO: validate` with actual results
+- Replace TODO markers with actual results
 - Add new references if discovered
 
 ### 7. Update state

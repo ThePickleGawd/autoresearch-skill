@@ -12,7 +12,7 @@ Write the abstract and introduction in the paper file (see `Paper:` in settings.
 4. **Expected results** — phrased as goals, not claims yet (1-2 sentences)
 5. **Significance** — why it matters (1 sentence)
 
-Mark unvalidated result claims with `% TODO: validate`.
+Mark unvalidated result claims with `[TODO: validate]` (markdown) or `% TODO: validate` (LaTeX).
 
 ### 2. Write introduction (4-5 paragraphs)
 1. Big picture — why this matters, cite foundational works
@@ -22,7 +22,7 @@ Mark unvalidated result claims with `% TODO: validate`.
 5. Contributions — bullet list (each becomes a validation target)
 
 ### 3. Outline remaining sections
-Add section stubs with `% TODO` comments in the paper file.
+Add section stubs with TODO markers in the paper file.
 
 ### 4. Extract validation targets
 From abstract and contributions, extract testable claims. Each target is just what you claim and what evidence would convince you:
@@ -43,7 +43,7 @@ Write `.autoresearch/reports/YYYY-MM-DD/specify/report.md`:
 - **Validation plan** — what to produce for each claim
 - **Risks** — what could prevent the claims from holding
 
-### 7. User checkpoint
+### 8. User checkpoint
 Present the abstract, introduction, and validation targets.
 Ask: "Does this capture your vision?"
 

@@ -74,8 +74,8 @@ Experiment → judge loops until the judge passes.
 ## References
 
 `references.bib` in the paper directory is maintained across all phases. Rules:
-1. Every claim in the paper file must have a `\cite{}`
-2. Never fabricate — if you can't verify, add `note = {TO VERIFY}`
+1. Every claim must be cited — use `[@citekey]` in markdown or `\cite{citekey}` in LaTeX
+2. Never fabricate — if you can't verify, add `note = {TO VERIFY}` to the bib entry
 3. Cite keys: `{firstauthor}{year}{keyword}` (e.g., `vaswani2017attention`)
 4. When you find a key paper, download its arxiv HTML to `.autoresearch/refs/` for full-text context
 
@@ -131,12 +131,13 @@ Read the log before acting to avoid repeating work.
 
 **Step 3: Set up.** Based on answers:
 1. Create `.autoresearch/` structure (refs/, reports/, scratch/, log.jsonl)
-2. Set up paper directory — if markdown: create `paper.md` + `references.bib` from `${CLAUDE_SKILL_DIR}/templates/`. If LaTeX: use detected template or note that user will import one.
+2. Set up paper directory — if markdown: create `paper.md` from `${CLAUDE_SKILL_DIR}/templates/paper.md` + empty `references.bib`. If LaTeX: use detected template or tell user to extract their conference zip into the paper directory.
 3. Write `settings.md` with all detected/confirmed values
 4. Add `.autoresearch/refs/` and `.autoresearch/scratch/` to `.gitignore`
 
 **Step 4: Begin ground phase.** Read `${CLAUDE_SKILL_DIR}/phases/ground.md` — **execute it now.**
 
 ### Resume (`/autoresearch resume`):
-1. Read `.autoresearch/log.jsonl` to find current state
-2. Read the next phase protocol — **execute it now**
+1. Read `.autoresearch/state.md` — this tells you where things stand
+2. Read `.autoresearch/settings.md` for project config
+3. Read the next phase protocol — **execute it now**

@@ -39,7 +39,7 @@ Write `.autoresearch/reports/YYYY-MM-DD/ground/report.md`:
 - **The gap** — what's missing and why it matters for the intent
 - **Proposed direction** — hypothesis and how it addresses the gap
 
-### 7. User checkpoint
+### 8. User checkpoint
 Present to the user:
 1. The gap you found
 2. Top 10 papers (title, year, one-line summary)
