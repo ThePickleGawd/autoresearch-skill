@@ -13,7 +13,7 @@ Run experiments to validate the paper's claims. Experiment code lives in the rep
 ### 2. Set up dependencies
 If experiments need external code, datasets, or tools:
 - Clone external repos into `third_party/` in the project root
-- Install packages using the project's package manager (see settings.md — default `uv`)
+- Install packages using the project's environment tools (see `Env:` in settings.md — default `uv`)
 - Read the repo's README/docs for setup instructions
 - Download datasets as needed
 - Log what was set up to `.autoresearch/log.jsonl`

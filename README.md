@@ -44,9 +44,9 @@ Everything lives in `.autoresearch/` in your project:
 ```markdown
 # Research Settings
 - Paper: .autoresearch/paper/
-- Package manager: uv
+- Env: uv, python 3.11, cuda 12.1
 - Phases: ground, specify, experiment, judge
-- Notes: python + jax, single GPU
+- Notes: single GPU, use jax
 ```
 
 ## Four phases

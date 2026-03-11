@@ -46,14 +46,14 @@ Default `settings.md`:
 # Research Settings
 
 - Paper: .autoresearch/paper/
-- Package manager: uv
+- Env: uv, python 3.11
 - Phases: ground, specify, experiment, judge
 - Notes: (none)
 ```
 
 Four settings, that's it:
 - **Paper** — path to the paper directory (auto-detected on setup)
-- **Package manager** — `uv` (default), `pip`, or `conda`
+- **Env** — tooling and environment (e.g., `uv, python 3.11`, `conda, cuda 12.1`, `pip, docker`)
 - **Phases** — which phases to run, in order
 - **Notes** — freeform (hardware, constraints, conventions)
 
@@ -112,7 +112,7 @@ Read the log before acting to avoid repeating work.
 **Step 2: Ask setup questions.** Based on what you found, ask the user (all at once, not one by one):
 - **Paper**: Found `paper/main.tex` → "Use this as the working paper?" / Nothing found → "Start from scratch or import a conference template?"
 - **Existing code**: Found Python files → "Should experiments build on this codebase?" / Nothing → "What stack? (e.g., python + jax, pytorch)"
-- **Package manager**: Detect `uv.lock`, `requirements.txt`, `pyproject.toml`, `environment.yml` → confirm. Nothing found → "Package manager? (uv recommended, or pip/conda)"
+- **Environment**: Detect `uv.lock`, `requirements.txt`, `pyproject.toml`, `environment.yml`, `Dockerfile` → confirm. Nothing found → "What tools? (uv recommended, python version, cuda, docker, etc.)"
 - **Any other preferences**: hardware, compute constraints, specific baselines to include
 
 **Step 3: Set up.** Based on answers:
