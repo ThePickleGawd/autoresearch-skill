@@ -9,7 +9,7 @@ Writes the paper first. Experiments validate claims. A judge loop iterates until
 ## Install
 
 ```bash
-npx skills add dylan/autoresearch
+npx skills add ThePickleGawd/autoresearch-skill
 ```
 
 ## Usage
@@ -26,21 +26,24 @@ Everything lives in `.autoresearch/` in your project:
 
 ```
 .autoresearch/
-├── paper.tex          # working paper (written first)
-├── references.bib     # living bibliography
+├── paper/             # paper directory (default, or your conference zip)
+│   ├── main.tex       # auto-detected main file
+│   └── references.bib # living bibliography
 ├── refs/              # downloaded arxiv papers (gitignored)
 ├── settings.md        # project preferences
 ├── log.jsonl          # all activity
 └── scratch/           # experiment work (gitignored)
 ```
 
+**Using a conference template?** Download the zip (NeurIPS, COLM, etc.), extract to `paper/` or `.autoresearch/paper/`, and autoresearch will auto-detect it.
+
 ## Settings
 
-`.autoresearch/settings.md` — three options, all optional:
+`.autoresearch/settings.md` — auto-generated on first run:
 
 ```markdown
 # Research Settings
-- Format: latex
+- Paper: .autoresearch/paper/
 - Phases: ground, specify, experiment, judge
 - Notes: python + jax, single GPU, use wandb
 ```

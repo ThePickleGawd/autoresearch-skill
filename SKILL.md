@@ -21,8 +21,9 @@ All research state lives in `.autoresearch/` in the user's project:
 
 ```
 .autoresearch/
-├── paper.tex          # working paper (the spec)
-├── references.bib     # living bibliography
+├── paper/             # paper directory (or user's extracted conference zip)
+│   ├── main.tex       # main file (auto-detected)
+│   └── references.bib # living bibliography
 ├── refs/              # downloaded arxiv papers as context (gitignored)
 ├── settings.md        # project preferences
 ├── log.jsonl          # all activity across phases and agents
@@ -43,13 +44,13 @@ Default `settings.md`:
 ```markdown
 # Research Settings
 
-- Format: latex
+- Paper: .autoresearch/paper/
 - Phases: ground, specify, experiment, judge
 - Notes: (none)
 ```
 
 Three settings, that's it:
-- **Format** — `latex` or `markdown` (controls paper output)
+- **Paper** — path to the paper directory (auto-detected on setup)
 - **Phases** — which phases to run, in order
 - **Notes** — freeform (stack, hardware, constraints, conventions)
 
@@ -60,7 +61,7 @@ Four phases. Read the detailed protocol from `${CLAUDE_SKILL_DIR}/phases/<phase>
 | Phase | What happens | Pauses for user? |
 |-------|-------------|-----------------|
 | **ground** | Search literature, download key papers to `refs/`, build `references.bib` | Yes — user confirms gap and direction |
-| **specify** | Co-write abstract + intro in `paper.tex`, citing `references.bib` | Yes — user approves spec |
+| **specify** | Co-write abstract + intro, citing `references.bib` | Yes — user approves spec |
 | **experiment** | Run experiments in `scratch/`, log results to `log.jsonl` | No — runs autonomously |
 | **judge** | Evaluate results against paper claims, decide next action | Only if verdict is PIVOT |
 
@@ -68,8 +69,8 @@ Experiment → judge loops until the judge passes.
 
 ## References
 
-`references.bib` is maintained across all phases. Rules:
-1. Every claim in `paper.tex` must have a `\cite{}`
+`references.bib` in the paper directory is maintained across all phases. Rules:
+1. Every claim in the main `.tex` file must have a `\cite{}`
 2. Never fabricate — if you can't verify, add `note = {TO VERIFY}`
 3. Cite keys: `{firstauthor}{year}{keyword}` (e.g., `vaswani2017attention`)
 4. When you find a key paper, download its arxiv HTML to `.autoresearch/refs/` for full-text context
@@ -87,10 +88,9 @@ Read the log before acting to avoid repeating work.
 
 ### First run (`/autoresearch "question"`):
 1. Create `.autoresearch/` structure
-2. Create default `settings.md`, ask user to review
-3. Copy `${CLAUDE_SKILL_DIR}/templates/paper.tex` to `.autoresearch/paper.tex`
-4. Create empty `.autoresearch/references.bib`
-5. Read `${CLAUDE_SKILL_DIR}/phases/ground.md` — **execute it now**
+2. **Auto-detect paper directory**: Search for existing `.tex` files in `paper/`, `./`, `.autoresearch/paper/`. If found, set `Paper:` in settings.md to that directory. If not found, create `.autoresearch/paper/` with template from `${CLAUDE_SKILL_DIR}/templates/paper.tex` and an empty `references.bib`.
+3. Create default `settings.md` (with detected paper path), ask user to review
+4. Read `${CLAUDE_SKILL_DIR}/phases/ground.md` — **execute it now**
 
 ### Resume (`/autoresearch resume`):
 1. Read `.autoresearch/log.jsonl` to find current state

@@ -20,7 +20,7 @@ For the 5-10 most relevant papers, download the full arxiv HTML:
 - These become full-text context for later phases
 
 ### 4. Build references.bib
-Add BibTeX entries to `.autoresearch/references.bib`. Aim for 15-30 references:
+Add BibTeX entries to `references.bib` (in the paper directory). Aim for 15-30 references:
 - 3-5 foundational works
 - 5-10 direct competitors
 - 3-5 methodology papers

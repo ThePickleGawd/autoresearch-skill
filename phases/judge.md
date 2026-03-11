@@ -6,7 +6,7 @@ Evaluate whether results validate the paper's claims. Be adversarial — look fo
 ## Steps
 
 ### 1. Load context
-- `.autoresearch/paper.tex` — the claims
+- the main `.tex` file — the claims
 - `.autoresearch/log.jsonl` — full experiment history
 - Experiment outputs in `.autoresearch/scratch/`
 
@@ -16,13 +16,13 @@ Score on three criteria (0.0 - 1.0):
 
 **Validity** — Are results statistically sound? Multiple seeds? Reproducible?
 
-**Fairness** — Apples-to-apples comparison? Strongest baselines from `references.bib`? Same compute budget?
+**Fairness** — Apples-to-apples comparison? Strongest baselines from `references.bib` (in the paper directory)? Same compute budget?
 
 **Alignment** — Does the evidence support the claim? Any overstatement?
 
 ### 3. Verdict
 
-- **PASS** (all scores >= 0.7) — Fill Discussion + Conclusion in `paper.tex`. Research complete.
+- **PASS** (all scores >= 0.7) — Fill Discussion + Conclusion in the paper. Research complete.
 - **REVISE** (fixable issues) — Log specific issues, return to experiment phase.
 - **PIVOT** (fundamental problem) — Stop. Present analysis to user. Ask for direction.
 
@@ -33,6 +33,6 @@ Log the verdict to `.autoresearch/log.jsonl`:
 
 ### 4. Route
 
-- **PASS** → Complete `paper.tex`, update `references.bib`, tell user it's done.
+- **PASS** → Complete the paper, update `references.bib` (in the paper directory), tell user it's done.
 - **REVISE** → Immediately return to experiment phase. Max 3 judge loops before asking user.
 - **PIVOT** → Stop. Present what worked/failed. Ask user what to do next.

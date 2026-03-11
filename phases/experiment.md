@@ -26,11 +26,11 @@ For each validation target:
 - Max 5 attempts per target before sending to judge
 - Always change something between attempts
 - Log every attempt — failures are data
-- If stuck, search for papers addressing the failure, add to `references.bib`
+- If stuck, search for papers addressing the failure, add to `references.bib` (in the paper directory)
 
 ### 5. Update paper
 After successful experiments:
-- Fill Experiments section in `.autoresearch/paper.tex` with real numbers
+- Fill Experiments section in the main `.tex` file with real numbers
 - Replace `% TODO: validate` with actual results
 - Add new references if discovered
 
