@@ -152,13 +152,33 @@ Every agent action that produces a result must log to `shared_pool/experience_lo
 
 Before any action, read `shared_pool/experience_log.jsonl` and `shared_pool/findings.md` to avoid redundant work and build on prior discoveries.
 
-## Getting Started
+## Execution Flow
 
-1. Read CLAUDE.md (or AGENTS.md) for project settings
-2. If `$ARGUMENTS` is provided and no `research_state.json` exists:
-   - Run `${CLAUDE_SKILL_DIR}/scripts/init_project.sh` to scaffold the directory structure
-   - Store project settings and research question in `research_state.json`
-   - Begin first phase
-3. If `research_state.json` exists, resume from the current phase
-4. If `$ARGUMENTS` contains `skip <phase>`, remove that phase from this run
-5. If `$ARGUMENTS` contains `resume`, pick up from last phase in `research_state.json`
+**You are a long-running agent. Creating files is NOT the task. The task is to execute the full research workflow. Do NOT stop after scaffolding.**
+
+### On first invocation (no `research_state.json` exists):
+
+1. Read CLAUDE.md (or AGENTS.md) for project settings under `## Autoresearch`
+2. Create the project directory structure (paper/, experiments/, shared_pool/, judge/)
+3. Copy the paper template from `${CLAUDE_SKILL_DIR}/templates/paper.tex` into `paper/`
+4. Create empty `paper/references.bib`, `shared_pool/experience_log.jsonl`, `shared_pool/findings.md`, `shared_pool/literature_notes.md`
+5. Write `research_state.json` with the research question and `"phase": 1`
+6. **Immediately continue to Phase 1** — read `${CLAUDE_SKILL_DIR}/phases/01-ground.md` and execute it now
+
+### On subsequent invocations (`research_state.json` exists):
+
+1. Read `research_state.json` to find the current phase
+2. Read the corresponding phase file from `${CLAUDE_SKILL_DIR}/phases/`
+3. **Execute that phase now**
+
+### Argument handling:
+
+- `skip <phase>` — remove that phase from this run, proceed to next
+- `resume` — pick up from last phase in `research_state.json`
+
+### Phase transitions:
+
+After completing a phase, update `research_state.json` and **immediately continue to the next phase** unless:
+- The phase requires a **user checkpoint** (Phases 1 and 2 pause for user approval)
+- The judge returns **PIVOT** (stop and ask user)
+- All phases are complete
