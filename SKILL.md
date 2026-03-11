@@ -100,10 +100,26 @@ Read the log before acting to avoid repeating work.
 ## Execution
 
 ### First run (`/autoresearch "question"`):
-1. Create `.autoresearch/` structure
-2. **Auto-detect paper directory**: Search for existing `.tex` files in `paper/`, `./`, `.autoresearch/paper/`. If found, set `Paper:` in settings.md to that directory. If not found, create `.autoresearch/paper/` with template from `${CLAUDE_SKILL_DIR}/templates/paper.tex` and an empty `references.bib`.
-3. Create default `settings.md` (with detected paper path), ask user to review
-4. Read `${CLAUDE_SKILL_DIR}/phases/ground.md` — **execute it now**
+
+**Step 1: Scan the repo.** Before asking anything, silently survey the project:
+- Glob for `**/*.tex`, `**/*.bib`, `**/paper/`, `**/*.sty`, `**/*.cls`
+- Glob for `**/*.py`, `**/*.ipynb`, `**/requirements.txt`, `**/pyproject.toml`
+- Check for existing `.autoresearch/`
+- Read `README.md`, `CLAUDE.md`, `AGENTS.md` if they exist
+
+**Step 2: Ask setup questions.** Based on what you found, ask the user (all at once, not one by one):
+- **Paper**: Found `paper/main.tex` → "Use this as the working paper?" / Nothing found → "Start from scratch or import a conference template?"
+- **Existing code**: Found Python files → "Should experiments build on this codebase?" / Nothing → "What stack? (e.g., python + jax, pytorch)"
+- **Scratch space**: If the repo has an obvious place for experiments (e.g., `experiments/`, `src/`) → "Run experiments here or in `.autoresearch/scratch/`?"
+- **Any other preferences**: hardware, compute constraints, specific baselines to include
+
+**Step 3: Set up.** Based on answers:
+1. Create `.autoresearch/` structure (refs/, reports/, scratch/, log.jsonl)
+2. Set up paper directory — use detected template, create from `${CLAUDE_SKILL_DIR}/templates/paper.tex`, or note that user will import one
+3. Write `settings.md` with all detected/confirmed values
+4. Add `.autoresearch/refs/` and `.autoresearch/scratch/` to `.gitignore`
+
+**Step 4: Begin ground phase.** Read `${CLAUDE_SKILL_DIR}/phases/ground.md` — **execute it now.**
 
 ### Resume (`/autoresearch resume`):
 1. Read `.autoresearch/log.jsonl` to find current state
