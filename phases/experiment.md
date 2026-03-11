@@ -37,7 +37,7 @@ After successful experiments:
 ### 6. Write report
 Write `.autoresearch/reports/YYYY-MM-DD-experiment.md` (or `-experiment-N` if repeated):
 - **Research intent** — what the experiments aimed to show
-- **Results vs. claims** — for each validation target: numbers obtained, whether they meet the threshold, and why or why not
+- **Results vs. claims** — for each validation target: what evidence was produced and whether it's convincing
 - **Failures** — what didn't work and the likely reasons (methodology, data, implementation, or fundamental)
 - **Confidence** — honest assessment of how well the evidence supports the paper's story
 

@@ -25,9 +25,9 @@ Mark unvalidated result claims with `% TODO: validate`.
 Add section stubs with `% TODO` comments in the main `.tex` file.
 
 ### 4. Extract validation targets
-From abstract and contributions, extract testable claims. Log them:
+From abstract and contributions, extract testable claims. Each target is just what you claim and what evidence would convince you:
 ```json
-{"time":"...","phase":"specify","action":"defined validation targets","targets":[{"claim":"...","metric":"...","threshold":"..."}]}
+{"time":"...","phase":"specify","action":"defined validation targets","targets":[{"claim":"...","evidence":"..."}]}
 ```
 
 ### 5. Update references
@@ -36,8 +36,8 @@ Read downloaded papers from `.autoresearch/refs/` for accurate citation details.
 ### 6. Write report
 Write `.autoresearch/reports/YYYY-MM-DD-specify.md`:
 - **Research intent** — how the abstract/intro operationalize the user's question
-- **Claims made** — each contribution and what would validate it
-- **Validation plan** — targets, metrics, thresholds — what success looks like
+- **Claims made** — each contribution and what evidence would be convincing
+- **Validation plan** — what to produce for each claim
 - **Risks** — what could prevent the claims from holding
 
 ### 7. User checkpoint
