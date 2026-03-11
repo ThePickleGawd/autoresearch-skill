@@ -12,18 +12,11 @@ An [Agent Skill](https://agentskills.io) for Claude Code, Codex, Cursor, and any
 npx skills add ThePickleGawd/autoresearch-skill
 ```
 
-```
-/autoresearch "Can sparse attention match dense attention at 1/4 the compute?"
-/autoresearch resume
-```
-
 ### Codex
 
 ```bash
 npx skills add ThePickleGawd/autoresearch-skill
 ```
-
-Skills are read from `~/.agents/skills/` or `.agents/skills/` in your repo.
 
 ### Cursor
 
@@ -33,6 +26,13 @@ Add `SKILL.md` as a project rule in Cursor settings.
 
 ```bash
 npx skills update
+```
+
+## Usage
+
+```
+/autoresearch "Can sparse attention match dense attention at 1/4 the compute?"
+/autoresearch resume
 ```
 
 ## How it works
@@ -57,6 +57,17 @@ Your abstract and introduction are the specification — every claim becomes a v
 - **`uv` by default.** Fast package management out of the box. Configurable to pip or conda.
 - **Reports you'll actually read.** Every phase writes a short report tied to your research question — not just a raw log.
 - **Two commands.** Start and resume. That's it.
+
+## Phases
+
+| | Phase | What happens | Pauses? |
+|-|-------|-------------|---------|
+| 1 | **Ground** | Search literature, download papers, build `references.bib` | Yes |
+| 2 | **Specify** | Co-write abstract + intro as the spec, extract validation targets | Yes |
+| 3 | **Experiment** | Run experiments, validate claims with real results | No |
+| 4 | **Judge** | Adversarial evaluation — pass, revise, or pivot | If pivot |
+
+Experiment → Judge loops until pass (max 3 before asking you).
 
 ## What it creates
 
@@ -85,17 +96,6 @@ third_party/           # cloned external repos
 - Phases: ground, specify, experiment, judge
 - Notes: single GPU, use jax
 ```
-
-## Phases
-
-| | Phase | What happens | Pauses? |
-|-|-------|-------------|---------|
-| 1 | **Ground** | Search literature, download papers, build `references.bib` | Yes |
-| 2 | **Specify** | Co-write abstract + intro as the spec, extract validation targets | Yes |
-| 3 | **Experiment** | Run experiments, validate claims with real results | No |
-| 4 | **Judge** | Adversarial evaluation — pass, revise, or pivot | If pivot |
-
-Experiment → Judge loops until pass (max 3 before asking you).
 
 ## Inspired by
 
