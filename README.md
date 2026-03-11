@@ -17,7 +17,6 @@ npx skills add ThePickleGawd/autoresearch-skill
 ```
 /autoresearch "Can sparse attention match dense attention at 1/4 the compute?"
 /autoresearch resume
-/autoresearch skip ground
 ```
 
 ## What it creates

@@ -124,6 +124,3 @@ Read the log before acting to avoid repeating work.
 ### Resume (`/autoresearch resume`):
 1. Read `.autoresearch/log.jsonl` to find current state
 2. Read the next phase protocol — **execute it now**
-
-### Skip (`/autoresearch skip ground`):
-1. Skip that phase, proceed to next
