@@ -80,7 +80,7 @@ Experiment → judge loops until the judge passes.
 
 ## Reports
 
-After completing each phase, write a report to `.autoresearch/reports/YYYY-MM-DD-<phase>/report.md`. If multiple runs on the same day, append a number: `2026-03-11-experiment-2/`. Additional artifacts (figures, data, tables) go in the same folder.
+After completing each phase, write a report to `.autoresearch/reports/YYYY-MM-DD/<phase>/report.md`. For phases that loop (experiment, judge), number subsequent reports: `report_2.md`, `report_3.md`. Additional artifacts (figures, data, tables) go in the same folder.
 
 Reports are grounded in the research intention — always tie back to what the user set out to show:
 - **Research intent** — restate the question/hypothesis being pursued

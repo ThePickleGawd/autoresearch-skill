@@ -43,7 +43,7 @@ After successful experiments:
 - Add new references if discovered
 
 ### 7. Write report
-Write `.autoresearch/reports/YYYY-MM-DD-experiment/report.md` (or `YYYY-MM-DD-experiment-N/` if repeated):
+Write `.autoresearch/reports/YYYY-MM-DD/experiment/report.md` (or `report_2.md`, `report_3.md` if looping):
 - **Research intent** — what the experiments aimed to show
 - **Results vs. claims** — for each validation target: what evidence was produced and whether it's convincing
 - **Failures** — what didn't work and the likely reasons (methodology, data, implementation, or fundamental)
