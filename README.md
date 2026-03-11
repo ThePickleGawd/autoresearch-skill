@@ -19,15 +19,21 @@ npx skills add ThePickleGawd/autoresearch-skill
 
 ### Codex
 
-Copy `SKILL.md` into your project as `AGENTS.md`:
-
 ```bash
-curl -sL https://raw.githubusercontent.com/ThePickleGawd/autoresearch-skill/main/SKILL.md > AGENTS.md
+npx skills add ThePickleGawd/autoresearch-skill
 ```
+
+Skills are read from `~/.agents/skills/` or `.agents/skills/` in your repo.
 
 ### Cursor
 
 Add `SKILL.md` as a project rule in Cursor settings.
+
+### Update
+
+```bash
+npx skills update
+```
 
 ## How it works
 
