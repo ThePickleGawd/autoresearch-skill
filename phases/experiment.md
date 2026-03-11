@@ -1,7 +1,7 @@
 # Phase: Experiment
 
 ## Goal
-Run experiments to validate the paper's claims. Work in `.autoresearch/scratch/`. Log everything to `.autoresearch/log.jsonl`.
+Run experiments to validate the paper's claims. Experiment code lives in the repo (not `.autoresearch/`). Use `.autoresearch/scratch/` only for throwaway outputs, temp files, and intermediate results. Log everything to `.autoresearch/log.jsonl`.
 
 ## Steps
 
@@ -12,8 +12,8 @@ Run experiments to validate the paper's claims. Work in `.autoresearch/scratch/`
 
 ### 2. Set up dependencies
 If experiments need external code, datasets, or tools:
-- Clone repos into `.autoresearch/scratch/`
-- Install packages (`pip install`, `conda`, etc.)
+- Clone external repos into `third_party/` in the project root
+- Install packages using the project's package manager (see settings.md — default `uv`)
 - Read the repo's README/docs for setup instructions
 - Download datasets as needed
 - Log what was set up to `.autoresearch/log.jsonl`
@@ -25,7 +25,7 @@ Before full runs, do quick sanity checks:
 
 ### 4. Run full experiments
 For each validation target:
-1. Implement in `.autoresearch/scratch/`
+1. Implement in the repo (experiment code is real code)
 2. Run the experiment
 3. Log results immediately to `.autoresearch/log.jsonl`
 4. If failed — form hypothesis, modify, re-run

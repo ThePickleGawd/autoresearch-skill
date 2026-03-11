@@ -44,8 +44,9 @@ Everything lives in `.autoresearch/` in your project:
 ```markdown
 # Research Settings
 - Paper: .autoresearch/paper/
+- Package manager: uv
 - Phases: ground, specify, experiment, judge
-- Notes: python + jax, single GPU, use wandb
+- Notes: python + jax, single GPU
 ```
 
 ## Four phases

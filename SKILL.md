@@ -46,14 +46,16 @@ Default `settings.md`:
 # Research Settings
 
 - Paper: .autoresearch/paper/
+- Package manager: uv
 - Phases: ground, specify, experiment, judge
 - Notes: (none)
 ```
 
-Three settings, that's it:
+Four settings, that's it:
 - **Paper** — path to the paper directory (auto-detected on setup)
+- **Package manager** — `uv` (default), `pip`, or `conda`
 - **Phases** — which phases to run, in order
-- **Notes** — freeform (stack, hardware, constraints, conventions)
+- **Notes** — freeform (hardware, constraints, conventions)
 
 ## Phases
 
@@ -63,7 +65,7 @@ Four phases. Read the detailed protocol from `${CLAUDE_SKILL_DIR}/phases/<phase>
 |-------|-------------|-----------------|
 | **ground** | Search literature, download key papers to `refs/`, build `references.bib` | Yes — user confirms gap and direction |
 | **specify** | Co-write abstract + intro, citing `references.bib` | Yes — user approves spec |
-| **experiment** | Run experiments in `scratch/`, log results to `log.jsonl` | No — runs autonomously |
+| **experiment** | Run experiments (code in repo, outputs in `scratch/`), log to `log.jsonl` | No — runs autonomously |
 | **judge** | Evaluate results against paper claims, decide next action | Only if verdict is PIVOT |
 
 Experiment → judge loops until the judge passes.
@@ -110,7 +112,7 @@ Read the log before acting to avoid repeating work.
 **Step 2: Ask setup questions.** Based on what you found, ask the user (all at once, not one by one):
 - **Paper**: Found `paper/main.tex` → "Use this as the working paper?" / Nothing found → "Start from scratch or import a conference template?"
 - **Existing code**: Found Python files → "Should experiments build on this codebase?" / Nothing → "What stack? (e.g., python + jax, pytorch)"
-- **Scratch space**: If the repo has an obvious place for experiments (e.g., `experiments/`, `src/`) → "Run experiments here or in `.autoresearch/scratch/`?"
+- **Package manager**: Detect `uv.lock`, `requirements.txt`, `pyproject.toml`, `environment.yml` → confirm. Nothing found → "Package manager? (uv recommended, or pip/conda)"
 - **Any other preferences**: hardware, compute constraints, specific baselines to include
 
 **Step 3: Set up.** Based on answers:
