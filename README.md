@@ -6,16 +6,28 @@ An [Agent Skill](https://agentskills.io) for Claude Code, Codex, Cursor, and any
 
 ## Install
 
+### Claude Code
+
 ```bash
 npx skills add ThePickleGawd/autoresearch-skill
 ```
-
-## Usage
 
 ```
 /autoresearch "Can sparse attention match dense attention at 1/4 the compute?"
 /autoresearch resume
 ```
+
+### Codex
+
+Copy `SKILL.md` into your project as `AGENTS.md`:
+
+```bash
+curl -sL https://raw.githubusercontent.com/ThePickleGawd/autoresearch-skill/main/SKILL.md > AGENTS.md
+```
+
+### Cursor
+
+Add `SKILL.md` as a project rule in Cursor settings.
 
 ## How it works
 
