@@ -6,27 +6,13 @@ An [Agent Skill](https://agentskills.io) for Claude Code, Codex, Cursor, and any
 
 ## Install
 
-### Claude Code
-
 ```bash
 npx skills add ThePickleGawd/autoresearch-skill
 ```
 
-### Codex
+Works with Claude Code, Codex, and any agent that supports [Agent Skills](https://agentskills.io). For Cursor, add `SKILL.md` as a project rule.
 
-```bash
-npx skills add ThePickleGawd/autoresearch-skill
-```
-
-### Cursor
-
-Add `SKILL.md` as a project rule in Cursor settings.
-
-### Update
-
-```bash
-npx skills update
-```
+Update with `npx skills update`.
 
 ## Usage
 
