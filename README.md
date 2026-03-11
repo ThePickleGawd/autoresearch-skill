@@ -48,7 +48,7 @@ Your abstract and introduction are the specification — every claim becomes a v
 
 - **The paper comes first.** You write the abstract and intro before any code runs. Claims drive experiments, not the other way around.
 - **One folder, self-contained.** Paper, references, reports, logs — everything lives in `.autoresearch/`.
-- **Drop in your conference template.** Download a NeurIPS or COLM zip, extract it, and it just works.
+- **Markdown by default, LaTeX when you need it.** Start writing immediately. Import a NeurIPS or COLM template when you're ready to submit.
 - **`uv` by default.** Fast package management out of the box. Configurable to pip or conda.
 - **Reports you'll actually read.** Every phase writes a short report tied to your research question — not just a raw log.
 - **Two commands.** Start and resume. That's it.
@@ -57,8 +57,8 @@ Your abstract and introduction are the specification — every claim becomes a v
 
 ```
 .autoresearch/
-├── paper/             # your paper (default template or conference zip)
-│   ├── main.tex
+├── paper/             # your paper (markdown default, or LaTeX)
+│   ├── paper.md       # or main.tex if using a conference template
 │   └── references.bib
 ├── refs/              # downloaded arxiv papers for context
 ├── reports/           # timestamped phase reports

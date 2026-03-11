@@ -21,8 +21,8 @@ All research state lives in `.autoresearch/` in the user's project:
 
 ```
 .autoresearch/
-├── paper/             # paper directory (or user's extracted conference zip)
-│   ├── main.tex       # main file (auto-detected)
+├── paper/             # paper directory
+│   ├── paper.md       # default (or main.tex if LaTeX)
 │   └── references.bib # living bibliography
 ├── refs/              # downloaded arxiv papers as context (gitignored)
 ├── reports/           # timestamped phase reports
@@ -73,7 +73,7 @@ Experiment → judge loops until the judge passes.
 ## References
 
 `references.bib` in the paper directory is maintained across all phases. Rules:
-1. Every claim in the main `.tex` file must have a `\cite{}`
+1. Every claim in the paper file must have a `\cite{}`
 2. Never fabricate — if you can't verify, add `note = {TO VERIFY}`
 3. Cite keys: `{firstauthor}{year}{keyword}` (e.g., `vaswani2017attention`)
 4. When you find a key paper, download its arxiv HTML to `.autoresearch/refs/` for full-text context
@@ -110,14 +110,14 @@ Read the log before acting to avoid repeating work.
 - Read `README.md`, `CLAUDE.md`, `AGENTS.md` if they exist
 
 **Step 2: Ask setup questions.** Based on what you found, ask the user (all at once, not one by one):
-- **Paper**: Found `paper/main.tex` → "Use this as the working paper?" / Nothing found → "Start from scratch or import a conference template?"
+- **Paper format**: Found `.tex` files → "Use this as the working paper?" / Nothing found → "Write in markdown (recommended) or import a LaTeX project (e.g., NeurIPS/COLM zip)?"
 - **Existing code**: Found Python files → "Should experiments build on this codebase?" / Nothing → "What stack? (e.g., python + jax, pytorch)"
 - **Environment**: Detect `uv.lock`, `requirements.txt`, `pyproject.toml`, `environment.yml`, `Dockerfile` → confirm. Nothing found → "What tools? (uv recommended, python version, cuda, docker, etc.)"
 - **Any other preferences**: hardware, compute constraints, specific baselines to include
 
 **Step 3: Set up.** Based on answers:
 1. Create `.autoresearch/` structure (refs/, reports/, scratch/, log.jsonl)
-2. Set up paper directory — use detected template, create from `${CLAUDE_SKILL_DIR}/templates/paper.tex`, or note that user will import one
+2. Set up paper directory — if markdown: create `paper.md` + `references.bib` from `${CLAUDE_SKILL_DIR}/templates/`. If LaTeX: use detected template or note that user will import one.
 3. Write `settings.md` with all detected/confirmed values
 4. Add `.autoresearch/refs/` and `.autoresearch/scratch/` to `.gitignore`
 

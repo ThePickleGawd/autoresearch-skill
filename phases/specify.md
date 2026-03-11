@@ -1,7 +1,7 @@
 # Phase: Specify
 
 ## Goal
-Write the abstract and introduction in the main `.tex` file (see `Paper:` in settings.md). These are the specification — every claim must be validated by experiments.
+Write the abstract and introduction in the paper file (see `Paper:` in settings.md — `paper.md` or `main.tex`). These are the specification — every claim must be validated by experiments.
 
 ## Steps
 
@@ -22,7 +22,7 @@ Mark unvalidated result claims with `% TODO: validate`.
 5. Contributions — bullet list (each becomes a validation target)
 
 ### 3. Outline remaining sections
-Add section stubs with `% TODO` comments in the main `.tex` file.
+Add section stubs with `% TODO` comments in the paper file.
 
 ### 4. Extract validation targets
 From abstract and contributions, extract testable claims. Each target is just what you claim and what evidence would convince you:

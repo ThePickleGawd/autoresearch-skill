@@ -6,7 +6,7 @@ Evaluate whether results validate the paper's claims. Be adversarial — look fo
 ## Steps
 
 ### 1. Load context
-- the main `.tex` file — the claims
+- the paper file — the claims
 - `.autoresearch/log.jsonl` — full experiment history
 - Experiment outputs in `.autoresearch/scratch/`
 
