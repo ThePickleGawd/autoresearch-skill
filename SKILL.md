@@ -134,6 +134,13 @@ Read the log before acting to avoid repeating work.
 2. Set up paper directory — if markdown: create `paper.md` from `${CLAUDE_SKILL_DIR}/templates/paper.md` + empty `references.bib`. If LaTeX: use detected template or tell user to extract their conference zip into the paper directory.
 3. Write `settings.md` with all detected/confirmed values
 4. Add `.autoresearch/refs/` and `.autoresearch/scratch/` to `.gitignore`
+5. Add a section to `CLAUDE.md` (create if needed):
+   ```
+   ## Research
+   This project uses [autoresearch](https://github.com/ThePickleGawd/autoresearch-skill).
+   Current status: `.autoresearch/state.md`
+   Run `/autoresearch resume` to continue.
+   ```
 
 **Step 4: Begin ground phase.** Read `${CLAUDE_SKILL_DIR}/phases/ground.md` — **execute it now.**
 
