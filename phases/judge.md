@@ -32,7 +32,11 @@ Log the verdict to `.autoresearch/log.jsonl`:
 ```
 
 ### 4. Write report
-Write `.autoresearch/reports/YYYY-MM-DD-judge.md` (or `-judge-N` if repeated) summarizing: scores per target, verdict, issues found, and next action.
+Write `.autoresearch/reports/YYYY-MM-DD-judge.md` (or `-judge-N` if repeated):
+- **Research intent** — the original question and what the paper claims
+- **Verdict** — PASS/REVISE/PIVOT with scores
+- **Evidence assessment** — for each claim: does the evidence support it, contradict it, or leave it ambiguous? Why?
+- **Honest gaps** — what the experiments fail to show, and whether it's fixable or fundamental
 
 ### 5. Route
 

@@ -35,7 +35,11 @@ After successful experiments:
 - Add new references if discovered
 
 ### 6. Write report
-Write `.autoresearch/reports/YYYY-MM-DD-experiment.md` (or `-experiment-N` if repeated) summarizing: what was tried, results per validation target, failures and hypotheses, and what's ready for judging.
+Write `.autoresearch/reports/YYYY-MM-DD-experiment.md` (or `-experiment-N` if repeated):
+- **Research intent** — what the experiments aimed to show
+- **Results vs. claims** — for each validation target: numbers obtained, whether they meet the threshold, and why or why not
+- **Failures** — what didn't work and the likely reasons (methodology, data, implementation, or fundamental)
+- **Confidence** — honest assessment of how well the evidence supports the paper's story
 
 ### 7. Proceed to judge
 When experiments are done (pass or fail), immediately continue to judge phase.

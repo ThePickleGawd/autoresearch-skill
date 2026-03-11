@@ -80,12 +80,13 @@ Experiment → judge loops until the judge passes.
 
 After completing each phase, write a report to `.autoresearch/reports/YYYY-MM-DD-<phase>.md`. If multiple runs on the same day, append a number: `2026-03-11-experiment-2.md`.
 
-Reports should be concise, human-readable summaries:
-- **What was done** — actions taken, decisions made
-- **Key findings** — results, discoveries, surprises
-- **Next steps** — what the next phase should focus on
+Reports are grounded in the research intention — always tie back to what the user set out to show:
+- **Research intent** — restate the question/hypothesis being pursued
+- **Evidence** — what the data shows, with specific numbers
+- **Assessment** — does this support or contradict the claims? Why?
+- **Gaps** — what remains unresolved or uncertain
 
-These are for the user to review progress without reading `log.jsonl`.
+These are for the user to quickly judge whether the research is on track.
 
 ## Activity Log
 
