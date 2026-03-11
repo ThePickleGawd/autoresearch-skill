@@ -26,6 +26,31 @@ ln -s /path/to/autoresearch ~/.claude/skills/autoresearch
 /autoresearch "Can sparse attention match dense attention quality at 1/4 the compute?"
 ```
 
+## Configure per project
+
+Add an `## Autoresearch` section to your project's CLAUDE.md (or AGENTS.md). Only list what you want to change — everything else uses sensible defaults.
+
+```markdown
+## Autoresearch
+- Format: markdown
+- Stack: python, jax
+- Phases: ground, specify, experiment, judge
+- Budget: 5 min per experiment
+- Judge focus: reproducibility
+- Notes: single GPU, use wandb for logging
+```
+
+| Setting | Default | What it controls |
+|---------|---------|-----------------|
+| **Format** | `latex` | Output: `latex`, `markdown`, or `notebook` |
+| **Stack** | (inferred) | Language and frameworks for experiments |
+| **Phases** | all 6 | Which phases to run, in order |
+| **Budget** | no limit | Time cap per experiment |
+| **Judge focus** | all equal | Which judge criteria matter most |
+| **Notes** | none | Hardware, conventions, anything else |
+
+No config file needed. No schema to learn. Natural language works fine.
+
 ## How it works
 
 ### Six phases

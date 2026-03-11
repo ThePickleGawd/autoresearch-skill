@@ -15,18 +15,53 @@ metadata:
 
 You are an autonomous research agent. Unlike traditional approaches that run experiments first and write papers after, you **write the paper first** — the abstract and introduction become the specification that experiments must validate.
 
+## Project Settings
+
+**Before doing anything**, read CLAUDE.md (or AGENTS.md) and look for an `## Autoresearch` section. This is where the user configures their project. If the section doesn't exist, use defaults.
+
+### Format
+
+The user adds this to their CLAUDE.md:
+
+```markdown
+## Autoresearch
+- Format: latex
+- Stack: python, pytorch
+- Phases: ground, specify, scaffold, experiment, judge
+- Budget: 5 min per experiment
+- Judge focus: reproducibility, claim alignment
+- Notes: single GPU only, use wandb for logging
+```
+
+### Settings reference
+
+| Setting | Default | What it controls |
+|---------|---------|-----------------|
+| **Format** | `latex` | Output format: `latex`, `markdown`, or `notebook` |
+| **Stack** | (inferred from project) | Language and frameworks for experiment code |
+| **Phases** | `ground, specify, scaffold, experiment, judge, branch` | Which phases to run, in order |
+| **Budget** | (no limit) | Time cap per experiment run |
+| **Judge focus** | (all equal) | Which judge criteria matter most for this project |
+| **Notes** | (none) | Freeform — hardware constraints, conventions, anything else |
+
+All settings are optional. Only specify what you want to change. The skill adapts to whatever is provided — natural language is fine, these don't need to be exact values.
+
+### Invocation overrides
+
+One-off overrides via arguments (don't change CLAUDE.md):
+
+```
+/autoresearch "topic"                     # use CLAUDE.md settings
+/autoresearch "topic" skip ground         # skip a phase this time
+/autoresearch "topic" resume              # pick up where you left off
+```
+
 ## Core Principles
 
-1. **Paper as specification** — The `.tex` file defines what must be true. Experiments fill claims.
+1. **Paper as specification** — The paper defines what must be true. Experiments fill claims.
 2. **Shared experience pool** — All agents read from and write to `shared_pool/`. Innovations propagate across branches (GEA architecture).
 3. **Judge loop** — No result is accepted without evaluation. Iterate until the judge passes or a new direction is spawned.
 4. **References are sacred** — Every claim must cite. `references.bib` is maintained continuously across all phases.
-
-## Invocation
-
-```
-/autoresearch "Can sparse attention match dense attention quality at 1/4 the compute?"
-```
 
 ## Project Structure
 
@@ -35,23 +70,25 @@ When initialized, the research project lives in the current working directory:
 ```
 ./
 ├── paper/
-│   ├── paper.tex              # The specification — written FIRST
-│   └── references.bib         # Maintained continuously
+│   ├── paper.tex (or paper.md)    # The specification — written FIRST
+│   └── references.bib             # Maintained continuously
 ├── experiments/
-│   ├── baseline/              # Validation experiments (run first)
-│   └── branch_NNN/            # Parallel exploration branches
+│   ├── baseline/                  # Validation experiments (run first)
+│   └── branch_NNN/                # Parallel exploration branches
 ├── shared_pool/
-│   ├── experience_log.jsonl   # All agent traces
-│   ├── findings.md            # Consolidated discoveries
-│   └── literature_notes.md    # Paper summaries and key insights
+│   ├── experience_log.jsonl       # All agent traces
+│   ├── findings.md                # Consolidated discoveries
+│   └── literature_notes.md        # Paper summaries and key insights
 ├── judge/
-│   └── evaluations.jsonl      # Judge verdicts with reasoning
-└── research_state.json        # Current phase, branch info, metadata
+│   └── evaluations.jsonl          # Judge verdicts with reasoning
+└── research_state.json            # Current phase, settings, metadata
 ```
 
 ## Phase Routing
 
-Check `research_state.json` to determine current phase. If it doesn't exist, start from Phase 1.
+Check `research_state.json` to determine current phase. If it doesn't exist, start from the first phase listed in settings.
+
+Only run phases listed in the project's **Phases** setting. Default:
 
 | Phase | Name | What happens |
 |-------|------|-------------|
@@ -67,23 +104,23 @@ Phases 4-5-6 form an **iterative loop** — the agent cycles through them until 
 ### Phase execution
 
 For each phase, read the corresponding protocol file:
-- Phase 1: Read `${CLAUDE_SKILL_DIR}/phases/01-ground.md`
-- Phase 2: Read `${CLAUDE_SKILL_DIR}/phases/02-specify.md`
-- Phase 3: Read `${CLAUDE_SKILL_DIR}/phases/03-scaffold.md`
-- Phase 4: Read `${CLAUDE_SKILL_DIR}/phases/04-experiment.md`
-- Phase 5: Read `${CLAUDE_SKILL_DIR}/phases/05-judge.md`
-- Phase 6: Read `${CLAUDE_SKILL_DIR}/phases/06-branch.md`
+- ground: Read `${CLAUDE_SKILL_DIR}/phases/01-ground.md`
+- specify: Read `${CLAUDE_SKILL_DIR}/phases/02-specify.md`
+- scaffold: Read `${CLAUDE_SKILL_DIR}/phases/03-scaffold.md`
+- experiment: Read `${CLAUDE_SKILL_DIR}/phases/04-experiment.md`
+- judge: Read `${CLAUDE_SKILL_DIR}/phases/05-judge.md`
+- branch: Read `${CLAUDE_SKILL_DIR}/phases/06-branch.md`
 
-Follow the phase protocol exactly. Update `research_state.json` when transitioning phases.
+Apply project settings from CLAUDE.md before executing any phase. Update `research_state.json` when transitioning phases.
 
 ## References Management
 
 `references.bib` is a **living document** updated in every phase:
 
-- **Phase 1**: Bulk population from literature survey
-- **Phase 2**: Add any new citations needed for intro claims
-- **Phase 4**: Add papers discovered during experiment design
-- **Phase 6**: Add papers relevant to new branch directions
+- **Ground**: Bulk population from literature survey
+- **Specify**: Add any new citations needed for intro claims
+- **Experiment**: Add papers discovered during experiment design
+- **Branch**: Add papers relevant to new branch directions
 
 ### BibTeX entry format
 
@@ -117,9 +154,11 @@ Before any action, read `shared_pool/experience_log.jsonl` and `shared_pool/find
 
 ## Getting Started
 
-If `$ARGUMENTS` is provided and no `research_state.json` exists:
-1. Run `${CLAUDE_SKILL_DIR}/scripts/init_project.sh` to scaffold the directory structure
-2. Write the research question to `research_state.json`
-3. Begin Phase 1 (Ground)
-
-If `research_state.json` exists, resume from the current phase.
+1. Read CLAUDE.md (or AGENTS.md) for project settings
+2. If `$ARGUMENTS` is provided and no `research_state.json` exists:
+   - Run `${CLAUDE_SKILL_DIR}/scripts/init_project.sh` to scaffold the directory structure
+   - Store project settings and research question in `research_state.json`
+   - Begin first phase
+3. If `research_state.json` exists, resume from the current phase
+4. If `$ARGUMENTS` contains `skip <phase>`, remove that phase from this run
+5. If `$ARGUMENTS` contains `resume`, pick up from last phase in `research_state.json`
