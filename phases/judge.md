@@ -32,7 +32,7 @@ Log the verdict to `.autoresearch/log.jsonl`:
 ```
 
 ### 4. Write report
-Write `.autoresearch/reports/YYYY-MM-DD-judge.md` (or `-judge-N` if repeated):
+Write `.autoresearch/reports/YYYY-MM-DD-judge/report.md` (or `YYYY-MM-DD-judge-N/` if repeated):
 - **Research intent** — the original question and what the paper claims
 - **Verdict** — PASS/REVISE/PIVOT with scores
 - **Evidence assessment** — for each claim: does the evidence support it, contradict it, or leave it ambiguous? Why?

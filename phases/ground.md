@@ -30,7 +30,7 @@ Add BibTeX entries to `references.bib` (in the paper directory). Aim for 15-30 r
 Append to `.autoresearch/log.jsonl` a summary entry with the landscape overview, gap identified, hypothesis, and key baselines.
 
 ### 6. Write report
-Write `.autoresearch/reports/YYYY-MM-DD-ground.md`:
+Write `.autoresearch/reports/YYYY-MM-DD-ground/report.md`:
 - **Research intent** — the user's original question, restated
 - **What exists** — key prior work and how it relates to the intent
 - **The gap** — what's missing and why it matters for the intent

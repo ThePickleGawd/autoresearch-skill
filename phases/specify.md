@@ -34,7 +34,7 @@ From abstract and contributions, extract testable claims. Each target is just wh
 Read downloaded papers from `.autoresearch/refs/` for accurate citation details. Add any new citations to `references.bib` (in the paper directory).
 
 ### 6. Write report
-Write `.autoresearch/reports/YYYY-MM-DD-specify.md`:
+Write `.autoresearch/reports/YYYY-MM-DD-specify/report.md`:
 - **Research intent** — how the abstract/intro operationalize the user's question
 - **Claims made** — each contribution and what evidence would be convincing
 - **Validation plan** — what to produce for each claim
