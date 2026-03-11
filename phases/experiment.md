@@ -6,8 +6,8 @@ Run experiments to validate the paper's claims. Experiment code lives in the rep
 ## Steps
 
 ### 1. Read context
-- Read `.autoresearch/log.jsonl` — what's been tried
-- Read validation targets from the log
+- Read `.autoresearch/state.md` — current status, targets, previous results
+- Read `.autoresearch/log.jsonl` if more detail needed
 - Read relevant papers from `.autoresearch/refs/` for methodology details
 
 ### 2. Set up dependencies
@@ -42,12 +42,15 @@ After successful experiments:
 - Replace `% TODO: validate` with actual results
 - Add new references if discovered
 
-### 7. Write report
+### 7. Update state
+Rewrite `.autoresearch/state.md` with: best results per target, key findings, dead ends, and current attempt count.
+
+### 8. Write report
 Write `.autoresearch/reports/YYYY-MM-DD/experiment/report.md` (or `report_2.md`, `report_3.md` if looping):
 - **Research intent** — what the experiments aimed to show
 - **Results vs. claims** — for each validation target: what evidence was produced and whether it's convincing
 - **Failures** — what didn't work and the likely reasons (methodology, data, implementation, or fundamental)
 - **Confidence** — honest assessment of how well the evidence supports the paper's story
 
-### 8. Proceed to judge
+### 9. Proceed to judge
 When experiments are done (pass or fail), immediately continue to judge phase.

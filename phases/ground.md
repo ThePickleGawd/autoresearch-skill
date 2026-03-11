@@ -29,7 +29,10 @@ Add BibTeX entries to `references.bib` (in the paper directory). Aim for 15-30 r
 ### 5. Log findings
 Append to `.autoresearch/log.jsonl` a summary entry with the landscape overview, gap identified, hypothesis, and key baselines.
 
-### 6. Write report
+### 6. Update state
+Rewrite `.autoresearch/state.md` with: current phase, research intent, key papers found, identified gap, and proposed direction.
+
+### 7. Write report
 Write `.autoresearch/reports/YYYY-MM-DD/ground/report.md`:
 - **Research intent** — the user's original question, restated
 - **What exists** — key prior work and how it relates to the intent

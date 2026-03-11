@@ -47,6 +47,7 @@ Your abstract and introduction are the specification — every claim becomes a v
 ├── paper/             # your paper (markdown default, or LaTeX)
 │   ├── paper.md       # or main.tex if using a conference template
 │   └── references.bib
+├── state.md           # working memory (rewritten, always current)
 ├── refs/              # downloaded arxiv papers for context
 ├── reports/           # timestamped phase reports
 ├── settings.md        # auto-detected project preferences

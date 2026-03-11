@@ -24,6 +24,7 @@ All research state lives in `.autoresearch/` in the user's project:
 ├── paper/             # paper directory
 │   ├── paper.md       # default (or main.tex if LaTeX)
 │   └── references.bib # living bibliography
+├── state.md           # current snapshot (rewritten, not appended)
 ├── refs/              # downloaded arxiv papers as context (gitignored)
 ├── reports/           # timestamped phase reports
 ├── settings.md        # project preferences
@@ -89,6 +90,19 @@ Reports are grounded in the research intention — always tie back to what the u
 - **Gaps** — what remains unresolved or uncertain
 
 These are for the user to quickly judge whether the research is on track.
+
+## State
+
+`.autoresearch/state.md` is the working memory. **Rewrite it (don't append)** after every phase completion or significant change. It should always reflect current reality:
+
+- **Status** — current phase, attempt number, last updated
+- **Validation targets** — each claim and whether it's passed, in progress, or failed
+- **Best results** — key metrics from experiments so far
+- **Key findings** — insights discovered along the way
+- **Dead ends** — what didn't work and why
+- **Preferences** — user preferences learned during the session
+
+Read `state.md` first when resuming. It's faster than parsing the full log.
 
 ## Activity Log
 

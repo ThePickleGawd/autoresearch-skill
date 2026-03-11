@@ -6,8 +6,8 @@ Evaluate whether results validate the paper's claims. Be adversarial — look fo
 ## Steps
 
 ### 1. Load context
+- `.autoresearch/state.md` — current results and findings
 - the paper file — the claims
-- `.autoresearch/log.jsonl` — full experiment history
 - Experiment outputs in `.autoresearch/scratch/`
 
 ### 2. Evaluate each validation target
@@ -31,14 +31,17 @@ Log the verdict to `.autoresearch/log.jsonl`:
 {"time":"...","phase":"judge","action":"evaluated","verdict":"REVISE","scores":{"validity":0.8,"fairness":0.5,"alignment":0.9},"issues":["missing FlashAttention-2 baseline"],"next":"add baseline, re-run"}
 ```
 
-### 4. Write report
+### 4. Update state
+Rewrite `.autoresearch/state.md` with: verdict, scores, updated target statuses, and next action.
+
+### 5. Write report
 Write `.autoresearch/reports/YYYY-MM-DD/judge/report.md` (or `report_2.md`, `report_3.md` if looping):
 - **Research intent** — the original question and what the paper claims
 - **Verdict** — PASS/REVISE/PIVOT with scores
 - **Evidence assessment** — for each claim: does the evidence support it, contradict it, or leave it ambiguous? Why?
 - **Honest gaps** — what the experiments fail to show, and whether it's fixable or fundamental
 
-### 5. Route
+### 6. Route
 
 - **PASS** → Complete the paper, update `references.bib` (in the paper directory), tell user it's done.
 - **REVISE** → Immediately return to experiment phase. Max 3 judge loops before asking user.
