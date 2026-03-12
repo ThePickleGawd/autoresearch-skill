@@ -119,10 +119,10 @@ Commit at phase boundaries. Prefix with `[autoresearch]` so research history is 
 
 When to commit:
 - After setup: `[autoresearch] setup — <topic>`
-- After ground: `[autoresearch] ground — literature survey complete`
-- After specify: `[autoresearch] specify — abstract + intro, N validation targets`
-- After judge pass: `[autoresearch] judge pass — all targets validated`
-- After meaningful experiment results: `[autoresearch] experiment — <what changed>`
+- After ground: `[autoresearch] ground — <gap found, key insight>`
+- After specify: `[autoresearch] specify — <main claim, N targets>`
+- After judge: `[autoresearch] judge — <verdict, why>`
+- After meaningful experiment results: `[autoresearch] experiment — <what changed, result>`
 
 Don't commit every failed experiment attempt — `log.jsonl` and `state.md` track that.
 
