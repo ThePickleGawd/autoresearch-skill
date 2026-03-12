@@ -115,14 +115,14 @@ Read the log before acting to avoid repeating work.
 
 ## Git
 
-Commit at phase boundaries. Prefix with `research:` so research history is easy to filter (`git log --grep="research:"`).
+Commit at phase boundaries. Prefix with `[autoresearch]` so research history is easy to filter (`git log --grep="autoresearch"`).
 
 When to commit:
-- After setup: `research: setup — <topic>`
-- After ground: `research: ground — literature survey complete`
-- After specify: `research: specify — abstract + intro, N validation targets`
-- After judge pass: `research: judge pass — all targets validated`
-- After meaningful experiment results: `research: experiment — <what changed>`
+- After setup: `[autoresearch] setup — <topic>`
+- After ground: `[autoresearch] ground — literature survey complete`
+- After specify: `[autoresearch] specify — abstract + intro, N validation targets`
+- After judge pass: `[autoresearch] judge pass — all targets validated`
+- After meaningful experiment results: `[autoresearch] experiment — <what changed>`
 
 Don't commit every failed experiment attempt — `log.jsonl` and `state.md` track that.
 
