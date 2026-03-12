@@ -113,6 +113,19 @@ Append to `.autoresearch/log.jsonl` after every significant action:
 
 Read the log before acting to avoid repeating work.
 
+## Git
+
+Commit at phase boundaries. Prefix with `research:` so research history is easy to filter (`git log --grep="research:"`).
+
+When to commit:
+- After setup: `research: setup — <topic>`
+- After ground: `research: ground — literature survey complete`
+- After specify: `research: specify — abstract + intro, N validation targets`
+- After judge pass: `research: judge pass — all targets validated`
+- After meaningful experiment results: `research: experiment — <what changed>`
+
+Don't commit every failed experiment attempt — `log.jsonl` and `state.md` track that.
+
 ## Execution
 
 ### First run (`/autoresearch "question"`):
