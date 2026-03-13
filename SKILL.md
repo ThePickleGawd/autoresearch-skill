@@ -1,6 +1,6 @@
 ---
 name: autoresearch
-description: Paper-first autonomous research. Grounds ideas in literature, writes the spec (abstract + intro) first, then runs experiments with a judge loop. Use when the user wants to research a topic, write a paper, or explore a scientific question.
+description: Paper-first autonomous research agent. Use when the user wants to (1) research a topic or scientific question, (2) write an academic paper, (3) run experiments to validate a hypothesis, (4) do a literature review or survey, (5) explore whether a phenomenon exists, (6) benchmark or compare approaches, or (7) any task involving "write a paper", "research this", "is this true", "validate this claim", "literature review", "run experiments". Writes the abstract and intro as the specification first, then grounds in literature, runs experiments, and judges results in a loop.
 license: MIT
 argument-hint: "[research question or topic]"
 disable-model-invocation: true
